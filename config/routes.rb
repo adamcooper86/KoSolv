@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   }
 
   scope constraints: ACCEPTS_JSON do
-    resource :users
+    resources :questions
+    resources :users
   end
 
   get '*path',   to: 'public#show'
