@@ -4,8 +4,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = Question.find params[:id]
-    render json: @question
+    render json: question
   end
 
   def create
@@ -14,13 +13,17 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    @question = Question.find params[:id]
-    @question.update prompt: params[:prompt], category: params[:category]
+    question.update prompt: params[:prompt], category: params[:category]
     render json: @question
   end
 
   def destroy
-    Question.find(params[:id]).destroy
+    question.destroy
     render nothing: true
+  end
+
+  private
+  def question
+    @question ||= Question.find params[:id]
   end
 end
