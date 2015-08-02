@@ -7,26 +7,24 @@
 
 var App = React.createClass({
   request: function(action, method, data){
-    debugger
-    request = $.ajax({
-      url:      action,
-      method:   method,
-      data:     data,
-      dataType: "json"
-    });
+    return new Promise(function(resolve, reject){
+      request = $.ajax({
+        url:      action,
+        method:   method,
+        data:     data,
+        dataType: "json"
+      });
 
-    request.done(function(serverData){
-      console.log(serverData);
-    });
+      request.done(function(serverData){
+        resolve(serverData)
+      });
 
-    request.fail(function(serverData){
-      console.log(serverData);
-      console.log('ajax fail');
+      request.fail(function(serverData){
+        reject(serverData)
+      });
     });
   },
   render: function(){
-    var data = this.request('/questions', 'get');
-    debugger
     return (
       <div>
         <Header />
