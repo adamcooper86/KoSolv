@@ -1,0 +1,64 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: rgb(255, 255, 102);
+}
+
+/*display's*/
+.db {
+  display: block;
+}
+
+
+/*floats*/
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+
+
+
+.h100 {
+  height: 100px;
+}
+
+.w100 {
+  width: 100px;
+}
+
+.bg-g {
+  background-color: rgb(178, 176, 54);
+}
+
+.tac {
+  text-align: center;
+}
+
+.pt30px {
+  padding-top: 30px;
+}
+
+.cr {
+  color: rgb(178, 63, 67)
+}
+
+.bg-b {
+  background-color: rgb(128, 208, 255);
+}
+
+.m0 {
+  margin: 0px;
+}
+
+.p0 {
+  padding: 0px;
+}
