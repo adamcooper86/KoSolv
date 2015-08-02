@@ -1,7 +1,6 @@
 class SolutionsController < ApplicationController
   def show
-    @solution = Solution.find params[:id]
-    render json: @solution
+    render json: solution
   end
 
   def create
@@ -10,14 +9,17 @@ class SolutionsController < ApplicationController
   end
 
   def update
-    @solution = Solution.find params[:id]
-    @solution.update params;
-    render json: @solution
+    solution.update params;
+    render json: solution
   end
 
   def destroy
-    @solution = Solution.find params[:id]
-    @solution.destroy;
+    solution.destroy;
     render nothing: true
+  end
+
+  private
+  def solution
+    @solution ||= Solution.find params[:id]
   end
 end
