@@ -52,9 +52,8 @@ RSpec.describe QuestionsController, type: :request do
 
   describe "delete #destroy" do
     it "returns http success" do
-      delete "/questions/#{Question.last.id}", {}, {Accept: :json}
+      delete "/answers/#{Answers.last.id}", {}, {Accept: :json}
       expect(response).to have_http_status(:success)
     end
   end
-
 end
