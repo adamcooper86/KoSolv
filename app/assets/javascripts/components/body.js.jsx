@@ -42,11 +42,12 @@ var Body = React.createClass({
       solutionsList: solutionObjects
     });
   },
-  renderSolution: function(event){
-    event.preventDefault();
+  renderSolution: function(question, solution){
+
     this.setState({
       answerQuestionViewPort: true,
-      solution: event.target.id,
+      solution: solution,
+      question: question,
     });
   },
   render: function() {
