@@ -4,7 +4,7 @@ class SolutionsController < ApplicationController
   end
 
   def create
-    @solution = Solution.create params[:question_id]
+    @solution = Solution.create question_id: params[:question_id]
     render json: @solution
   end
 
