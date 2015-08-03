@@ -5,9 +5,9 @@ var AnswerQuestionViewPort = React.createClass({
     };
   },
   componentDidMount: function(){
-    this.firebaseRef = new Firebase("https://glaring-heat-160.firebaseIO.com/questions");
+    var refUrl = "https://glaring-heat-160.firebaseIO.com/questions/" + this.props.question.id + "solutions/" + this.props.solution.id
+    this.firebaseRef = new Firebase( refUrl );
     this.firebaseRef.on('child_added', function(snapshot){
-      debugger
       this.setState({
         answer: this.state.answer.concat([{key: snapshot.key(), val: snapshot.val()}])
       })
@@ -17,8 +17,12 @@ var AnswerQuestionViewPort = React.createClass({
     return (
       <div>
         <h1>AnswerQuestionViewPort</h1>
+        <h2>Question Info</h2>
         <p>{this.props.question.id}</p>
         <p>{this.props.question.prompt}</p>
+        <h2>Solution</h2>
+        <p>{this.props.solution.id}</p>
+        <AnswersContainer />
       </div>
     );
   }
