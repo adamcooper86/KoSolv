@@ -4,6 +4,8 @@ var Body = React.createClass({
       answerQuestionViewPort: false,
       question: null,
       solution: null,
+      questionsList: [],
+      solutionsList: [],
     };
   },
   request: function(action, method, data){
@@ -30,17 +32,46 @@ var Body = React.createClass({
       });
     });
   },
+  updateQuestionList: function(questionObjects){
+    this.setState({
+      questionsList: questionObjects
+    });
+  },
+  updateSolutionList: function(solutionObjects){
+    this.setState({
+      solutionsList: solutionObjects
+    });
+  },
+  renderSolution: function(question, solution){
 
+    this.setState({
+      answerQuestionViewPort: true,
+      solution: solution,
+      question: question,
+    });
+  },
   render: function() {
     if(this.state.answerQuestionViewPort === false){
-      var content = <QuestionList request={ this.request } answer={this.createNewSolution}/>
+      var questionList = <QuestionList request={ this.request }
+                                       answer={this.createNewSolution}
+                                       list={this.state.questionsList}
+                                       makeList={this.updateQuestionList} />
+      var solutionList = <OpenSolutionsList request={ this.request }
+                                            answer={this.renderSolution}
+                                            list={this.state.solutionsList}
+                                            questionList={this.state.questionsList}
+                                            makeList={this.updateSolutionList}/>
     }else{
-      var content = <AnswerQuestionViewPort question={this.state.question} solution={this.state.solution}/>
+      var viewPort = <AnswerQuestionViewPort request={this.request}
+                                             question={this.state.question}
+                                             solution={this.state.solution}/>
     }
 
     return (
       <div>
-        { content }
+        { questionList }
+        { solutionList }
+        { viewPort}
       </div>
     );
   }

@@ -1,4 +1,7 @@
 class SolutionsController < ApplicationController
+  def index
+    render json: Solution.all
+  end
   def show
     render json: solution
   end
