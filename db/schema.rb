@@ -32,11 +32,11 @@ ActiveRecord::Schema.define(version: 20150802180905) do
   end
 
   create_table "solutions", force: :cascade do |t|
-    t.boolean  "open"
+    t.boolean  "open",        default: true
     t.integer  "question_id"
     t.integer  "answer_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
 end
