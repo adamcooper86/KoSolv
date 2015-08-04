@@ -68,7 +68,7 @@ var Body = React.createClass({
     }
 
     return (
-      <div>
+      <div id="main">
         { questionList }
         { solutionList }
         { viewPort}
