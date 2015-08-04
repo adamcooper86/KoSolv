@@ -1,4 +1,8 @@
 class AnswersController < ApplicationController
+  def index
+    render json: Answer.all
+  end
+
   def show
     render json: answer
   end
@@ -9,7 +13,7 @@ class AnswersController < ApplicationController
   end
 
   def update
-    answer.update params
+    answer.update solution_id: params[:solution_id], content: params[:content], user_id: params[:user_id]
     render json: @answer
   end
 

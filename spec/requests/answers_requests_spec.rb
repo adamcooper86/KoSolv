@@ -1,58 +1,60 @@
 require 'rails_helper'
 
-RSpec.describe QuestionsController, type: :request do
+RSpec.describe AnswersController, type: :request do
 
   before(:each){
     Question.create prompt: "Prompt", category: 'Cat'
+    Solution.create question_id: Question.last.id
+    Answer.create solution_id: Solution.last.id
   }
 
   describe "GET #index" do
     it "returns http success" do
-      get "/questions", {}, { Accept: :json }
+      get "/answers", {}, { Accept: :json }
       expect(response.status).to eq 200
     end
     it "returns a json object that is an array of questions" do
-      get "/questions", {}, { Accept: :json }
-      expect(JSON.parse(response.body)[0]["prompt"]).to eq "Prompt"
+      get "/answers", {}, { Accept: :json }
+      expect(JSON.parse(response.body)[0]["solution_id"]).to eq Solution.last.id
     end
   end
 
   describe "GET #show" do
     it "returns http success" do
-      get "/questions/#{Question.first.id}", {}, {Accept: :json}
+      get "/answers/#{Answer.last.id}", {}, {Accept: :json}
       expect(response.status).to eq 200
     end
-    it "returns a json object that is a question obj" do
-      get "/questions/#{Question.first.id}", {}, { Accept: :json }
-      expect(JSON.parse(response.body)["prompt"]).to eq "Prompt"
+    it "returns a json object that is a answer obj" do
+      get "/answers/#{Answer.last.id}", {}, { Accept: :json }
+      expect(JSON.parse(response.body)["solution_id"]).to eq Solution.last.id
     end
   end
 
   describe "post #create" do
     it "returns http success" do
-      post "/questions", {}, {Accept: :json}
+      post "/answers", {}, {Accept: :json}
       expect(response).to have_http_status(:success)
     end
     it "returns a json object that is a question obj" do
-      post "/questions", {prompt: "Prompt"}, {Accept: :json}
-      expect(JSON.parse(response.body)["prompt"]).to eq "Prompt"
+      post "/answers", {solution_id: Solution.last.id}, {Accept: :json}
+      expect(JSON.parse(response.body)["solution_id"]).to eq Solution.last.id
     end
   end
 
   describe "put #update" do
    it "returns http success" do
-      put "/questions/#{Question.last.id}", {prompt: "PromptChanged"}, {Accept: :json}
+      put "/answers/#{Answer.last.id}", {solution_id: Solution.first.id}, {Accept: :json}
       expect(response).to have_http_status(:success)
     end
     it "returns a json object that is a question obj" do
-      put "/questions/#{Question.last.id}", {prompt: "PromptChanged"}, {Accept: :json}
-      expect(JSON.parse(response.body)["prompt"]).to eq "PromptChanged"
+      put "/answers/#{Answer.last.id}", {solution_id: Solution.first.id}, {Accept: :json}
+      expect(JSON.parse(response.body)["solution_id"]).to eq Solution.first.id
     end
   end
 
   describe "delete #destroy" do
     it "returns http success" do
-      delete "/answers/#{Answers.last.id}", {}, {Accept: :json}
+      delete "/answers/#{Answer.last.id}", {}, {Accept: :json}
       expect(response).to have_http_status(:success)
     end
   end

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   scope constraints: ACCEPTS_JSON do
     resources :questions, except: [:new, :edit]
     resources :solutions, except: [:new, :edit]
-    resources :answers,   except: [:new, :edit, :index]
+    resources :answers,   except: [:new, :edit]
     resources :users,     except: [:new, :edit]
   end
 
