@@ -27,7 +27,7 @@ var Body = React.createClass({
     });
   },
   renderSolution: function(question, solution){
-    body.props.go('answerViewPort', question, solution);
+    this.props.go('answerViewPort', question, solution);
   },
   render: function() {
     if(this.props.page === 'answerViewPort'){

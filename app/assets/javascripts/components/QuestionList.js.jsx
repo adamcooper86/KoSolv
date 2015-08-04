@@ -17,7 +17,7 @@ var QuestionList = React.createClass({
       return <li key={index}>{item.prompt} <a id={item.id} href='/questions/{ item.id }/answer' onClick={ this.props.answer }>Answer</a></li>
     }.bind(this));
     return (
-      <div>
+      <div id="QuestionList">
         <h3>Questions</h3>
         <ul>
           { listItems }

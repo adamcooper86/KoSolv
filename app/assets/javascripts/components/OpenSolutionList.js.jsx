@@ -52,7 +52,7 @@ var OpenSolutionsList = React.createClass({
               </li>
     }.bind(this));
     return (
-      <div>
+      <div id="OpenSolutionList">
         <h3>Open Solutions</h3>
         <ul>
           {listItems}
