@@ -14,7 +14,7 @@ RSpec.describe AnswersController, type: :controller do
   describe "GET #create" do
     it "returns http success" do
       fake_answer = double :question
-      expect(Answer).to receive(:create).with({:solution_id=>"1"}).and_return(fake_answer)
+      expect(Answer).to receive(:create).with({:solution_id=>"1", :content=>"Your Content"}).and_return(fake_answer)
       post :create, solution_id: "1"
       expect(response).to have_http_status(:success)
     end

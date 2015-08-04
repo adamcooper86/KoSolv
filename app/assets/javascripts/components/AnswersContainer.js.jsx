@@ -1,4 +1,7 @@
 var AnswersContainer = React.createClass({
+  handleChange: function(event){
+    this.props.change(event);
+  },
   render: function() {
     var answers = this.props.answers.map(function(item, index){
       return(
@@ -7,9 +10,13 @@ var AnswersContainer = React.createClass({
     });
     return (
       <div>
-        <h1>AnswerContainer</h1>
-        <button onClick={ this.props.add }>Add Answer</button>
-        <p>{answers}</p>
+        <div className="w50 db">
+          <div className="w100 pb75 bg-w pr">
+            <textarea className="pa w100"
+                      onChange={this.handleChange}>
+            </textarea>
+          </div>
+        </div>
       </div>
     );
   }

@@ -44,9 +44,9 @@ var App = React.createClass({
   render: function(){
     return (
       <div>
-        <Header go={this.goToPage} page={this.state.page} question={this.state.solution} solution={this.state.solution} />
-        <Body   go={this.goToPage} page={this.state.page} question={this.state.solution} solution={this.state.solution} />
-        <Footer go={this.goToPage} page={this.state.page} question={this.state.solution} solution={this.state.solution} />
+        <Header go={this.goToPage} page={this.state.page} question={this.state.question} solution={this.state.solution} />
+        <Body   go={this.goToPage} page={this.state.page} question={this.state.question} solution={this.state.solution} />
+        <Footer go={this.goToPage} page={this.state.page} question={this.state.question} solution={this.state.solution} />
       </div>
     )
   }
