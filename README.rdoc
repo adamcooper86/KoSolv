@@ -4,9 +4,16 @@ Kosolv is a cooperative learning platform that allows users to answer the
 same question in parallel with others. This gives a unique learning experience
 as the user is recieving realtime, in the moment feedback.
 
-=Technology
+===Technology
   -Ruby 2.2.0
   -Rails 4
   -Postgresql
   -React
   -Firebase account/available reference
+
+===Contributing
+There is still a lot to be done around here! From major feature implementations,
+to refactoring, to creating a better UX. When you think you'd like to jump in
+please create an issue in the repo outlining what you are planning to
+implement. Below is a more specific list of features needed to be added:
+
