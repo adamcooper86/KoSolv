@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     if @user
       render json: @user
     else
-      render status: 400
+      render nothing: true, status: 400
     end
   end
 end
