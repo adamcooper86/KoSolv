@@ -6,7 +6,7 @@ var NavigationBarRight = React.createClass({
   render: function(){
     return (
       <ul className="fr cr m0 p0">
-        <a href="/login" id="login" className="h100px db" onClick={this.handleClick}><button className="h100 w100">Login</button></a>
+        <a href="/login" id="login" className="h100px db" onClick={this.handleClick}><button className="h100px w100px">Login</button></a>
       </ul>
     )
   }

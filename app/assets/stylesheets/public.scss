@@ -24,15 +24,37 @@ body {
   float: right;
 }
 
+.pr {
+  position: relative;
+}
+
+.pa {
+  position: absolute;
+  top:0;
+  bottom:0;
+  left: 0;
+  right: 0;
+}
 
 
-
-.h100 {
+.h100px {
   height: 100px;
 }
 
-.w100 {
+.w100px {
   width: 100px;
+}
+
+.w50 {
+  width: 50%;
+}
+
+.w100 {
+  width: 100%;
+}
+
+.pb75 {
+  padding-bottom: 75%;
 }
 
 .bg-g {
@@ -53,6 +75,10 @@ body {
 
 .bg-b {
   background-color: rgb(128, 208, 255);
+}
+
+.bg-w {
+  background-color: rgb(255, 255, 255);
 }
 
 .m0 {

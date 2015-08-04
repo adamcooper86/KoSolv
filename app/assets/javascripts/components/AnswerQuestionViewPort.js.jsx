@@ -19,11 +19,15 @@ var AnswerQuestionViewPort = React.createClass({
       })
     }.bind(this));
   },
+  handleChange: function(event){
+    this.firebaseRef.child(this.state.answers[0].key).child('content').set(event.target.value)
+  },
   addAnswer: function(){
     viewPort = this;
     call('/answers', 'post', {solution_id: this.props.solution.id})
       .then(function(serverData){
-        viewPort.firebaseRef.push(serverData);
+        var answer = serverData
+        viewPort.firebaseRef.push(answer);
       }).catch(function(serverData){
         console.log('error' + serverData);
       });
@@ -31,13 +35,11 @@ var AnswerQuestionViewPort = React.createClass({
   render: function() {
     return (
       <div id="questionViewPort">
-        <h1>AnswerQuestionViewPort</h1>
-        <h2>Question Info</h2>
-        <p>{this.props.question.id}</p>
-        <p>{this.props.question.prompt}</p>
-        <h2>Solution</h2>
-        <p>{this.props.solution.id}</p>
-        <AnswersContainer answers={this.state.answers} add={this.addAnswer} />
+        <h2>{this.props.question.prompt}</h2>
+        <button onClick={ this.addAnswer }>Add Answer</button>
+        <AnswersContainer answers={this.state.answers}
+                          change={this.handleChange}
+                          add={this.addAnswer} />
       </div>
     );
   }
