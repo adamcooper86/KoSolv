@@ -1,13 +1,14 @@
 var OpenSolutionsList = React.createClass({
   makeSolutions: function(){
     var solutionList = this;
-    this.props.request('/solutions', 'get')
-                      .then(function(serverData){
-                        solutionList.props.makeList( serverData );
-                      })
-                      .catch(function(serverData){
-                        console.log(serverData);
-                      });
+    debugger
+    call('/solutions', 'get')
+      .then(function(serverData){
+        solutionList.props.makeList( serverData );
+      })
+      .catch(function(serverData){
+        console.log(serverData);
+      });
   },
   componentDidMount: function() {
     this.makeSolutions();

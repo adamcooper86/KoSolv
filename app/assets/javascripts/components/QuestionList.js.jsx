@@ -1,13 +1,13 @@
 var QuestionList = React.createClass({
   makeQuestions: function(){
     var questionList = this;
-    this.props.request('/questions', 'get')
-                      .then(function(serverData){
-                        questionList.props.makeList( serverData );
-                      })
-                      .catch(function(serverData){
-                        console.log(serverData);
-                      });
+    call('/questions', 'get')
+      .then(function(serverData){
+        questionList.props.makeList( serverData );
+      })
+      .catch(function(serverData){
+        console.log(serverData);
+      });
   },
   componentDidMount: function() {
     this.makeQuestions();
