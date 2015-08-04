@@ -20,11 +20,11 @@ var OpenSolutionsList = React.createClass({
       });
     }
   },
-  findQuestion(item_id){
-    questions = this.props.questionList;
-    if(questions.length > 0){
-      return $.grep(questions, function(question){
-        return question.id === item.question_id
+  findSolution(item_id){
+    solutions = this.props.list;
+    if(solutions.length > 0){
+      return $.grep(solutions, function(solution){
+        return solution.id == item_id
       });
     }
   },
@@ -33,8 +33,8 @@ var OpenSolutionsList = React.createClass({
     solution_id = event.target.id
     question_id = event.target.id
 
-    solution = this.findSolution(solution_id)
-    question = this.findQuestion(solution)
+    solution = this.findSolution(solution_id)[0]
+    question = this.findQuestion(solution)[0]
 
     debugger
     this.props.answer(question, solution)
