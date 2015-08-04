@@ -1,4 +1,14 @@
 var AnswersContainer = React.createClass({
+  getInitialState: function(){
+    return {
+      editAnswer: {}
+    }
+  },
+  componentWillUpdate: function(nextProps){
+    this.setState({
+      editAnswer: nextProps.answers[-1]
+    });
+  },
   handleChange: function(event){
     this.props.change(event);
   },
@@ -8,6 +18,7 @@ var AnswersContainer = React.createClass({
         <li key={item.key}>Id: {item.val.id} Content: {item.val.content} Solution:{item.val.solution_id}</li>
       )
     });
+
     return (
       <div>
         <div className="w50 db">
