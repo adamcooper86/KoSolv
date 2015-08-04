@@ -43,5 +43,4 @@ var AnswerQuestionViewPort = React.createClass({
       </div>
     );
   }
-
 });
