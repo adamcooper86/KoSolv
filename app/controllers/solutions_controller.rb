@@ -12,7 +12,7 @@ class SolutionsController < ApplicationController
   end
 
   def update
-    solution.update params;
+    solution.update question_id: params[:question_id];
     render json: solution
   end
 
