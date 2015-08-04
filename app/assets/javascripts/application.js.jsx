@@ -27,12 +27,26 @@ var call = function(action, method, data){
 
 
 var App = React.createClass({
+  getInitialState: function(){
+    return {
+      page: 'home',
+      question: null,
+      solution: null,
+    }
+  },
+  goToPage: function(name, question, solution){
+    this.setState({
+      page: name,
+      question: question,
+      solution: solution,
+    });
+  },
   render: function(){
     return (
       <div>
-        <Header />
-        <Body />
-        <Footer />
+        <Header go={this.goToPage} page={this.state.page} question={this.state.solution} solution={this.state.solution} />
+        <Body   go={this.goToPage} page={this.state.page} question={this.state.solution} solution={this.state.solution} />
+        <Footer go={this.goToPage} page={this.state.page} question={this.state.solution} solution={this.state.solution} />
       </div>
     )
   }

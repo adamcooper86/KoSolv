@@ -1,7 +1,6 @@
 var OpenSolutionsList = React.createClass({
   makeSolutions: function(){
     var solutionList = this;
-    debugger
     call('/solutions', 'get')
       .then(function(serverData){
         solutionList.props.makeList( serverData );
@@ -37,7 +36,6 @@ var OpenSolutionsList = React.createClass({
     solution = this.findSolution(solution_id)[0]
     question = this.findQuestion(solution)[0]
 
-    debugger
     this.props.answer(question, solution)
 
   },

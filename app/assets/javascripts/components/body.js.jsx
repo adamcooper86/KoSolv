@@ -1,9 +1,6 @@
 var Body = React.createClass({
   getInitialState: function() {
     return {
-      answerQuestionViewPort: false,
-      question: null,
-      solution: null,
       questionsList: [],
       solutionsList: [],
     };
@@ -15,12 +12,8 @@ var Body = React.createClass({
       prompt: event.target.parentNode.textContent,
     }
     var body = this;
-    request('/solutions', 'post', {question_id: newQuestion.id}).then(function(serverData){
-      body.setState({
-        answerQuestionViewPort: true,
-        question: newQuestion,
-        solution: serverData,
-      });
+    call('/solutions', 'post', {question_id: newQuestion.id}).then(function(serverData){
+      body.props.go('answerViewPort', newQuestion, serverData);
     });
   },
   updateQuestionList: function(questionObjects){
@@ -34,15 +27,13 @@ var Body = React.createClass({
     });
   },
   renderSolution: function(question, solution){
-
-    this.setState({
-      answerQuestionViewPort: true,
-      solution: solution,
-      question: question,
-    });
+    body.props.go('answerViewPort', question, solution);
   },
   render: function() {
-    if(this.state.answerQuestionViewPort === false){
+    if(this.props.page === 'answerViewPort'){
+      var viewPort = <AnswerQuestionViewPort question={this.props.question}
+                                             solution={this.props.solution}/>
+    }else{
       var questionList = <QuestionList answer={this.createNewSolution}
                                        list={this.state.questionsList}
                                        makeList={this.updateQuestionList} />
@@ -50,9 +41,6 @@ var Body = React.createClass({
                                             list={this.state.solutionsList}
                                             questionList={this.state.questionsList}
                                             makeList={this.updateSolutionList}/>
-    }else{
-      var viewPort = <AnswerQuestionViewPort question={this.state.question}
-                                             solution={this.state.solution}/>
     }
 
     return (
