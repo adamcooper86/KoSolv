@@ -29,22 +29,31 @@ var Body = React.createClass({
   renderSolution: function(question, solution){
     this.props.go('answerViewPort', question, solution);
   },
+  handleSuccessfulLogin: function(user){
+    this.props.login(user);
+  },
   render: function() {
-    if(this.props.page === 'answerViewPort'){
+    if(this.props.page === 'login'){
+      var login = <Login login={this.handleSuccessfulLogin}/>
+    }else if(this.props.page === 'answerViewPort'){
       var viewPort = <AnswerQuestionViewPort question={this.props.question}
-                                             solution={this.props.solution}/>
+                                             solution={this.props.solution}
+                                             user={this.props.user}/>
     }else{
       var questionList = <QuestionList answer={this.createNewSolution}
                                        list={this.state.questionsList}
-                                       makeList={this.updateQuestionList} />
+                                       makeList={this.updateQuestionList}
+                                       user={this.props.user} />
       var solutionList = <OpenSolutionsList answer={this.renderSolution}
                                             list={this.state.solutionsList}
                                             questionList={this.state.questionsList}
-                                            makeList={this.updateSolutionList}/>
+                                            makeList={this.updateSolutionList}
+                                            user={this.props.user} />
     }
 
     return (
       <div id="main">
+        { login }
         { questionList }
         { solutionList }
         { viewPort}

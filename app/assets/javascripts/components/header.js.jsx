@@ -6,7 +6,7 @@ var Header = React.createClass({
     return (
       <header className="bg-b h100px tac cr">
         <NavigationBarLeft go={this.handleClick} />
-        <NavigationBarRight go={this.handleClick} />
+        <NavigationBarRight go={this.handleClick} page={this.props.page}/>
       </header>
     )
   }

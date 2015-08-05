@@ -1,35 +1,28 @@
 var AnswersContainer = React.createClass({
-  getInitialState: function(){
-    return {
-      editAnswer: {}
-    }
-  },
-  componentWillUpdate: function(nextProps){
-    this.setState({
-      editAnswer: nextProps.answers[-1]
-    });
-  },
-  handleChange: function(event){
-    this.props.change(event);
+  setRef: function(answer){
+    var refUrl = "https://glaring-heat-160.firebaseIO.com/questions/"
+                 + this.props.question.id
+                 + "/solutions/"
+                 + this.props.solution.id
+                 + "/"
+                 + answer.key
+    return( refUrl );
   },
   render: function() {
     var answers = this.props.answers.map(function(item, index){
       return(
-        <li key={item.key}>Id: {item.val.id} Content: {item.val.content} Solution:{item.val.solution_id}</li>
+        <AnswerDisplayBox fire={this.setRef(item)} answer={item}  />
       )
-    });
+    }.bind(this));
 
     return (
       <div>
-        <div className="w50 db">
-          <div className="w100 pb75 bg-w pr">
-            <textarea className="pa w100"
-                      onChange={this.handleChange}>
-            </textarea>
-          </div>
-        </div>
+        <AnswerEditBox answers={this.props.answers}
+                          question={this.props.question}
+                          solution={this.props.solution}
+                          user={this.props.user} />
+        {answers}
       </div>
     );
   }
-
 });
