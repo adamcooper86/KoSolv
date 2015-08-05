@@ -21,7 +21,7 @@ var AnswerQuestionViewPort = React.createClass({
   },
   addAnswer: function(){
     viewPort = this;
-    call('/answers', 'post', {solution_id: this.props.solution.id})
+    call('/answers', 'post', {solution_id: this.props.solution.id, user_id: this.props.user.id})
       .then(function(serverData){
         var answer = serverData
         viewPort.firebaseRef.push(answer);
