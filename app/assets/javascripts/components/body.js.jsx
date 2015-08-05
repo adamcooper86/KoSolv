@@ -37,17 +37,20 @@ var Body = React.createClass({
       var login = <Login login={this.handleSuccessfulLogin}/>
     }else if(this.props.page === 'answerViewPort'){
       var viewPort = <AnswerQuestionViewPort question={this.props.question}
-                                             solution={this.props.solution}/>
+                                             solution={this.props.solution}
+                                             user={this.props.user}/>
     }else{
       var questionList = <QuestionList answer={this.createNewSolution}
                                        list={this.state.questionsList}
-                                       makeList={this.updateQuestionList} />
+                                       makeList={this.updateQuestionList}
+                                       user={this.props.user} />
       var solutionList = <OpenSolutionsList answer={this.renderSolution}
                                             list={this.state.solutionsList}
                                             questionList={this.state.questionsList}
-                                            makeList={this.updateSolutionList}/>
+                                            makeList={this.updateSolutionList}
+                                            user={this.props.user} />
     }
-    debugger
+
     return (
       <div id="main">
         { login }

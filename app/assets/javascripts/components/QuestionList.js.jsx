@@ -14,7 +14,13 @@ var QuestionList = React.createClass({
   },
   render: function() {
     var listItems = this.props.list.map(function(item, index){
-      return <li key={index}>{item.prompt} <a id={item.id} href='/questions/{ item.id }/answer' onClick={ this.props.answer }>Answer</a></li>
+      return <li key={index}>
+               {item.prompt}
+               <a id={item.id}
+                  href='/questions/{ item.id }/answer'
+                  onClick={ this.props.answer }>Answer
+                </a>
+              </li>
     }.bind(this));
     return (
       <div id="QuestionList">
