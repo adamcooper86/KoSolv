@@ -4,17 +4,31 @@ var AnswerEditBox = React.createClass({
       content: "loading..."
     }
   },
-  componentDidMount: function(){
-    //var answer = this.findUserAnswer();
-    // this.firebaseRef = new Firebase( this.props.fire );
-    // this.firebaseRef.child("content").on('value', function(snapshot){
-    //   this.setState({
-    //     content: snapshot.val()
-    //   })
-    // }.bind(this));
+  setRef: function(answer){
+    var refUrl = "https://glaring-heat-160.firebaseIO.com/questions/"
+                 + this.props.question.id
+                 + "/solutions/"
+                 + this.props.solution.id
+                 + "/"
+                 + this.props.answer[0].key
+    return( refUrl );
+  },
+  setFire: function(){
+    var url = this.setRef()
+    this.firebaseRef = new Firebase( url );
+    this.firebaseRef.child("content").on('value', function(snapshot){
+      this.setState({
+        content: snapshot.val()
+      })
+    }.bind(this));
   },
   handleChange: function(event){
-    console.log(this.refs.editArea.getDOMNode())
+    this.firebaseRef.child("content").set(this.refs.editArea.getDOMNode().value)
+  },
+  componentDidUpdate: function(){
+    if(this.props.answer.length > 0 && this.firebaseRef == undefined){
+      this.setFire();
+    }
   },
   render: function(){
     return (
@@ -23,13 +37,10 @@ var AnswerEditBox = React.createClass({
           <textarea ref="editArea"
                     className="pa w100"
                     onChange={this.handleChange}
-                    defaultValue={this.state.content}>
+                    value={this.state.content}>
           </textarea>
         </div>
       </div>
     );
   }
 });
-
-
-
