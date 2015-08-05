@@ -18,6 +18,7 @@ var AnswersContainer = React.createClass({
     return (
       <div>
         <AnswerEditBox answers={this.props.answers}
+                          answer={this.props.answers}
                           question={this.props.question}
                           solution={this.props.solution}
                           user={this.props.user} />

@@ -30,11 +30,13 @@ var AnswerQuestionViewPort = React.createClass({
       });
   },
   findUserAnswer: function(){
+    var answer = {}
 
-    var answer = $.grep(this.state.answers, function(item){
-      item.user_id === this.props.user.id
-    }).bind(this);
-
+    this.state.answers.forEach(function(element, index, array){
+      if(element.val.user_id === this.props.user.id){
+        answer = element
+      }
+    }.bind(this));
     return answer
   },
   render: function() {
